@@ -23,6 +23,8 @@
 // THE SOFTWARE.
 import Foundation
 
+#if os(iOS)
+
 open class _DateRow: _DateFieldRow {
     required public init(tag: String?) {
         super.init(tag: tag)
@@ -103,5 +105,5 @@ public final class CountDownRow: _CountDownRow, RowType {
     }
 }
 
-
+#endif
 

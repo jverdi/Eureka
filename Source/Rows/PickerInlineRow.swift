@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 open class PickerInlineCell<T: Equatable> : Cell<T>, CellType {
     
@@ -91,3 +94,4 @@ public final class PickerInlineRow<T> : _PickerInlineRow<T>, RowType, InlineRowT
     }
 }
 
+#endif

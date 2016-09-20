@@ -24,6 +24,9 @@
 
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 /// Class for the navigation accessory view used in FormViewController
 open class NavigationAccessoryView : UIToolbar {
@@ -67,3 +70,5 @@ open class NavigationAccessoryView : UIToolbar {
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
 }
+
+#endif

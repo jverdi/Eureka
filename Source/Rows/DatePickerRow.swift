@@ -23,7 +23,10 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
+#if os(iOS)
+    
 open class DatePickerCell : Cell<Date>, CellType {
     
     open lazy var datePicker: UIDatePicker = { [unowned self] in
@@ -128,3 +131,5 @@ public final class CountDownPickerRow : _DatePickerRow, RowType {
         super.init(tag: tag)
     }
 }
+
+#endif

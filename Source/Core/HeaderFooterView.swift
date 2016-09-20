@@ -24,6 +24,7 @@
 
 
 import Foundation
+import UIKit
 
 /**
  Enumeration used to generate views for the header and footer of a section.

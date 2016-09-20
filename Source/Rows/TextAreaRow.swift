@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 public enum TextAreaHeight {
     case fixed(cellHeight: CGFloat)
@@ -108,7 +111,9 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
         super.update()
         textLabel?.text = nil
         detailTextLabel?.text = nil
+        #if os(iOS)
         textView.isEditable = !row.isDisabled
+        #endif
         textView.textColor = row.isDisabled ? .gray : .black
         textView.text = row.displayValueFor?(row.value)
         placeholderLabel.text = (row as? TextAreaConformance)?.placeholder
@@ -285,4 +290,4 @@ public final class TextAreaRow: _TextAreaRow, RowType {
     }
 }
 
-
+#endif

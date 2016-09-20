@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 // MARK: SwitchCell
 
@@ -81,3 +84,5 @@ public final class SwitchRow: _SwitchRow, RowType {
         super.init(tag: tag)
     }
 }
+
+#endif

@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 /// Selector UIAlertController
 open class SelectorAlertController<T: Equatable> : UIAlertController, TypedRowControllerType {

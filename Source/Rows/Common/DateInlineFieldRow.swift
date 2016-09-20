@@ -23,8 +23,10 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
-
+#if os(iOS)
+    
 open class DateInlineCell : Cell<Date>, CellType {
     
     public required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -79,3 +81,5 @@ open class _DateInlineFieldRow: Row<DateInlineCell>, DatePickerRowProtocol, NoVa
         }
     }
 }
+
+#endif

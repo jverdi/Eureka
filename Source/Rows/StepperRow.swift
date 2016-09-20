@@ -8,6 +8,8 @@
 
 import UIKit
 
+#if os(iOS)
+
 // MARK: StepperCell
 
 open class StepperCell : Cell<Double>, CellType {
@@ -87,3 +89,5 @@ public final class StepperRow: _StepperRow, RowType {
         super.init(tag: tag)
     }
 }
+
+#endif

@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 open class _SelectorViewController<Row: SelectableRowType>: FormViewController, TypedRowControllerType where Row: BaseRow, Row: TypedRowType {
     

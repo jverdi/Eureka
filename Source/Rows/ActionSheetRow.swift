@@ -24,6 +24,7 @@
 
 
 import Foundation
+import UIKit
 
 open class AlertSelectorCell<T: Equatable> : Cell<T>, CellType {
     

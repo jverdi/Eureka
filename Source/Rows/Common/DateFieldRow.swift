@@ -23,7 +23,10 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
+#if os(iOS)
+    
 public protocol DatePickerRowProtocol: class {
     var minimumDate : Date? { get set }
     var maximumDate : Date? { get set }
@@ -137,3 +140,5 @@ open class _DateFieldRow: Row<DateCell>, DatePickerRowProtocol, NoValueDisplayTe
         }
     }
 }
+
+#endif

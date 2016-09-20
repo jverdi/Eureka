@@ -23,7 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
-
+import UIKit
 
 /// Selector Controller that enables multiple selection
 open class _MultipleSelectorViewController<T:Hashable, Row: SelectableRowType> : FormViewController, TypedRowControllerType where Row: BaseRow, Row: TypedRowType, Row.Cell.Value == T {

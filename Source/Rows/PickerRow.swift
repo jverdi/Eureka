@@ -23,7 +23,10 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
+#if os(iOS)
+    
 //MARK: PickerCell
 
 open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerViewDelegate where T: Equatable{
@@ -108,3 +111,5 @@ public final class PickerRow<T>: _PickerRow<T>, RowType where T: Equatable {
         super.init(tag: tag)
     }
 }
+    
+#endif

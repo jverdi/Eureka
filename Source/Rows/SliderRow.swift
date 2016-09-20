@@ -24,6 +24,8 @@
 
 import UIKit
 
+#if os(iOS)
+    
 /// The cell of the SliderRow
 open class SliderCell: Cell<Float>, CellType {
     
@@ -142,4 +144,5 @@ public final class SliderRow: Row<SliderCell>, RowType {
         super.init(tag: tag)
     }
 }
-
+    
+#endif

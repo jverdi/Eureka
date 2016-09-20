@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 /// Selector Controller used to pick an image
 open class ImagePickerController : UIImagePickerController, TypedRowControllerType, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -49,3 +52,4 @@ open class ImagePickerController : UIImagePickerController, TypedRowControllerTy
     }
 }
 
+#endif

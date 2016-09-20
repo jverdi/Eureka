@@ -24,6 +24,7 @@
 
 
 import Foundation
+import UIKit
 
 /// The delegate of the Eureka sections.
 public protocol SectionDelegate: class {

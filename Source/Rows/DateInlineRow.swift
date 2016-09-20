@@ -24,7 +24,8 @@
 
 import Foundation
 
-
+#if os(iOS)
+    
 extension DatePickerRowProtocol {
     
     func configureInlineRow(_ inlineRow: DatePickerRowProtocol){
@@ -200,4 +201,4 @@ public final class CountDownInlineRow_<T>: _CountDownInlineRow, RowType, InlineR
 
 public typealias CountDownInlineRow = CountDownInlineRow_<Date>
 
-
+#endif

@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 //MARK: SegmentedCell
 
@@ -169,3 +172,4 @@ public final class SegmentedRow<T: Equatable>: OptionsRow<SegmentedCell<T>>, Row
     }
 }
 
+#endif

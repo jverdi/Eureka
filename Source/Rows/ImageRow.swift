@@ -23,6 +23,9 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
+
+#if os(iOS)
 
 public struct ImageRowSourceTypes : OptionSet {
     
@@ -208,3 +211,4 @@ public final class ImageRow : _ImageRow<PushSelectorCell<UIImage>>, RowType {
     }
 }
 
+#endif

@@ -226,7 +226,11 @@ public enum PresentationMode<VCType: UIViewController> {
                 return controller
             case .popover(let controllerProvider, let completionCallback):
                 let controller = controllerProvider.createController()
+                #if os(iOS)
                 controller.modalPresentationStyle = .popover
+                #elseif os(tvOS)
+                controller.modalPresentationStyle = .overCurrentContext
+                #endif
                 let completionController = controller as? RowControllerType
                 if let callback = completionCallback {
                     completionController?.completionCallback = callback
@@ -431,8 +435,10 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
         }
     }
     
+    #if os(iOS)
     /// Accessory view that is responsible for the navigation between rows
     open var navigationAccessoryView : NavigationAccessoryView!
+    #endif
     
     /// Defines the behaviour of the navigation between rows
     public var navigationOptions : RowNavigationOptions?
@@ -474,9 +480,12 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        #if os(iOS)
         navigationAccessoryView = NavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44.0))
         navigationAccessoryView.tintColor = self.view.tintColor
-
+        #endif
+        
         let selectedIndexPaths = tableView?.indexPathsForSelectedRows ?? []
         tableView?.reloadRows(at: selectedIndexPaths, with: .none)
         selectedIndexPaths.forEach {
@@ -505,15 +514,19 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
                 tableView?.deselectRow(at: $0, animated: false)
             }
         }
-
+        
+        #if os(iOS)
         NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        #endif
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        #if os(iOS)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        #endif
     }
     
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -529,6 +542,8 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
         let options = navigationOptions ?? Form.defaultNavigationOptions
         guard options.contains(.Enabled) else { return nil }
         guard row.baseCell.cellCanBecomeFirstResponder() else { return nil}
+        
+        #if os(iOS)
         navigationAccessoryView.previousButton.isEnabled = nextRowForRow(row, withDirection: .up) != nil
         navigationAccessoryView.doneButton.target = self
         navigationAccessoryView.doneButton.action = #selector(FormViewController.navigationDone(_:))
@@ -538,6 +553,9 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
         navigationAccessoryView.nextButton.action = #selector(FormViewController.navigationAction(_:))
         navigationAccessoryView.nextButton.isEnabled = nextRowForRow(row, withDirection: .down) != nil
         return navigationAccessoryView
+        #else
+        return nil
+        #endif
     }
     
     //MARK: FormDelegate
@@ -811,6 +829,8 @@ extension FormViewController : UIScrollViewDelegate {
     }
 }
 
+#if os(iOS)
+    
 extension FormViewController {
     
     //MARK: KeyBoard Notifications
@@ -863,6 +883,8 @@ extension FormViewController {
         UIView.commitAnimations()
     }
 }
+    
+#endif
 
 public enum Direction { case up, down }
 
@@ -875,7 +897,11 @@ extension FormViewController {
     }
     
     func navigationAction(_ sender: UIBarButtonItem) {
+        #if os(iOS)
         navigateToDirection(sender == navigationAccessoryView.previousButton ? .up : .down)
+        #else
+        navigateToDirection(.down)
+        #endif
     }
     
     public func navigateToDirection(_ direction: Direction){
